@@ -1,53 +1,39 @@
 package com.etnetera.hr.data;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import javax.persistence.*;
+import java.util.Date;
 
 /**
  * Simple data entity describing basic properties of every JavaScript framework.
- * 
- * @author Etnetera
  *
+ * @author Etnetera
  */
 @Entity
+@Table(uniqueConstraints = {@UniqueConstraint(columnNames = {"name", "version"})})
+@Data
+@AllArgsConstructor
+@Builder
 public class JavaScriptFramework {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
-	@Column(nullable = false, length = 30)
-	private String name;
+    @Column(nullable = false, length = 30)
+    private String name;
 
-	public JavaScriptFramework() {
-	}
+    @Column
+    private String version;
 
-	public JavaScriptFramework(String name) {
-		this.name = name;
-	}
+    @Column
+    private Date depricationDate;
 
-	public Long getId() {
-		return id;
-	}
+    @Column
+    private Integer hypeLevel;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	@Override
-	public String toString() {
-		return "JavaScriptFramework [id=" + id + ", name=" + name + "]";
-	}
-
+    public JavaScriptFramework() {
+    }
 }

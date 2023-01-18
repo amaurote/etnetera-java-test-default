@@ -12,4 +12,6 @@ import com.etnetera.hr.data.JavaScriptFramework;
  */
 public interface JavaScriptFrameworkRepository extends CrudRepository<JavaScriptFramework, Long> {
 
+    boolean existsByNameIgnoreCaseAndVersionIgnoreCase(String name, String version);
+
 }
